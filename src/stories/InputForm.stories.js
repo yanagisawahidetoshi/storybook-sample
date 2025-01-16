@@ -16,7 +16,7 @@ export const InputForm = {}
 
 export const InputFormFrontEndError = {
   args: {
-    errors: {
+    defaultErrors: {
       nameError: '入力してください',
       mailError: '入力してください',
       contentError: '1000文字以内で入力してください'
@@ -26,7 +26,7 @@ export const InputFormFrontEndError = {
 
 export const InputFormBackEndError = {
   args: {
-    errors: {
+    defaultErrors: {
       serverError: '予期せぬエラーが発生しました。'
     }
   }
@@ -34,8 +34,8 @@ export const InputFormBackEndError = {
 
 export const InputFormBack = {
   args: {
-    name: 'ヤマダ太郎',
-    mail: 'yamada@yamada.com',
-    content: 'テスト入力です'
+    defaultName: 'ヤマダ太郎',
+    defaultMail: 'yamada@yamada.com',
+    defaultContent: 'テスト入力です'
   }
 }

@@ -4,23 +4,23 @@
     <dl>
       <dt>名前（必須）</dt>
       <dd>
-        <input type="text" name="name" v-model="nameInput" />
-        <p v-if="errorsInput.nameError" class="error">{{ errorsInput.nameError }}</p>
+        <input type="text" name="name" v-model="name" />
+        <p v-if="errors.nameError" class="error">{{ errors.nameError }}</p>
       </dd>
     </dl>
     <dl>
       <dt>メールアドレス（必須）</dt>
       <dd>
-        <input type="mail" name="mail" v-model="mailInput" />
-        <p v-if="errorsInput.mailError" class="error">{{ errorsInput.mailError }}</p>
+        <input type="mail" name="mail" v-model="mail" />
+        <p v-if="errors.mailError" class="error">{{ errors.mailError }}</p>
       </dd>
     </dl>
     <dl>
       <dt>内容</dt>
       <dd>
-        <textarea name="content" v-model="contentInput"></textarea>
-        <p v-if="errorsInput.contentError" class="error">
-          {{ errorsInput.contentError }}
+        <textarea name="content" v-model="content"></textarea>
+        <p v-if="errors.contentError" class="error">
+          {{ errors.contentError }}
         </p>
       </dd>
     </dl>
@@ -33,43 +33,44 @@
 <script>
 export default {
   name: 'my-form',
+  emits: ['submit'],
   props: {
-    name: {
+    defaultName: {
       type: String,
       default: ''
     },
-    mail: {
+    defaultMail: {
       type: String,
       default: ''
     },
-    content: {
+    defaultContent: {
       type: String,
       default: ''
     },
-    errors: {
+    defaultErrors: {
       type: Object,
       default: () => ({})
     }
   },
   data() {
     return {
-      nameInput: this.name ? this.name : '',
-      mailInput: this.mail ? this.mail : '',
-      contentInput: this.content ? this.content : '',
-      errorsInput: this.errors ? this.errors : {}
+      name: this.defaultName ? this.defaultName : '',
+      mail: this.defaultMail ? this.defaultMail : '',
+      content: this.defaultContent ? this.defaultContent : '',
+      errors: this.defaultErrors ? this.defaultErrors : {}
     }
   },
   methods: {
     validateForm() {
       const errors = {}
-      if (!this.nameInput) {
+      if (!this.name) {
         errors.nameError = '入力してください'
       }
-      if (!this.mailInput) {
+      if (!this.mail) {
         errors.mailError = '入力してください'
       }
-      this.errorsInput = errors
-      return Object.keys(this.errorsInput).length === 0
+      this.errors = errors
+      return Object.keys(this.errors).length > 0
     },
     onSubmit(event) {
       event.preventDefault()
@@ -77,9 +78,9 @@ export default {
         return
       }
       this.$emit('submit', {
-        name: this.nameInput,
-        mail: this.mailInput,
-        content: this.contentInput
+        name: this.name,
+        mail: this.mail,
+        content: this.content
       })
     }
   }
