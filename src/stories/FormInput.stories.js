@@ -15,9 +15,10 @@ export default {
       }
     },
     template:
-      '<FormInput :inputValue="inputValue" :errorMsg="errorMsg" @onConfirm="handleConfirm" @onValidation="handleValidation"/>'
+      '<FormInput :inputValue="inputValue" :errorMsg="errorMsg" @onInput="handleInput" @onConfirm="handleConfirm" @onValidation="handleValidation"/>'
   }),
   args: {
+    handleInput: fn(),
     handleConfirm: fn(),
     handleValidation: fn()
   }

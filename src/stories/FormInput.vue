@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ localInputValue }}
     <div>
       <span>【必須】</span><label for="">名前</label
       ><input type="text" v-model="localInputValue.name" />
@@ -33,10 +34,12 @@ export default {
   computed: {
     localInputValue: {
       get() {
+        console.log('aaa')
         return this.inputValue
       },
       set(newValue) {
-        this.$emit('input', newValue)
+        console.log(newValue)
+        this.$emit('onInput', newValue)
       }
     }
   },
