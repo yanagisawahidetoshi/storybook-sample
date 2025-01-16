@@ -1,42 +1,43 @@
-import FormPage from './FormPage.vue';
-import { fn } from '@storybook/test';
+import FormPage from './FormPage.vue'
+import { fn } from '@storybook/test'
 
 export default {
   title: 'Example/Form',
   component: FormPage,
   tags: ['autodocs'],
-  render:(args)=>({
-    components:{
+  render: (args) => ({
+    components: {
       FormPage
     },
     setup() {
       return {
-        ...args,
+        ...args
       }
     },
-    template:'<FormPage :inputValue="inputValue" :currentStep="currentStep" @onConfirm="onConfirm"/>',
+    template:
+      '<FormPage :inputValue="inputValue" :currentStep="currentStep" @onConfirm="onConfirm"/>'
   }),
   args: {
-    onConfirm:fn(),
+    onConfirm: fn()
   }
-};
+}
 
 export const Input = {
-  args:{
+  args: {
     inputValue: {
-      "name": "",
-      "content": ""
+      name: '',
+      content: ''
     },
-    currentStep: "input"
+    currentStep: 'input'
   }
 }
 
 export const Confirm = {
-  args:{
+  args: {
     inputValue: {
-      "name": "",
-      "content": ""
+      name: '',
+      content: ''
     },
-    currentStep: "confirm"
+    currentStep: 'confirm'
   }
 }
