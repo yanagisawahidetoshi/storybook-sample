@@ -62,3 +62,16 @@ export const Validation = {
     }
   }
 }
+
+export const ServerValidation = {
+  args: {
+    inputValue: {
+      name: '塚原',
+      content: 'あああああ'
+    },
+    errorMsg: {
+      name: 'すでに登録済みです',
+      content: ''
+    }
+  }
+}
