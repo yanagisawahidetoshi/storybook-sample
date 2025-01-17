@@ -36,17 +36,19 @@ export default {
   },
   methods: {
     validation(input) {
+      let hasError = false
       if (!input.name.trim()) {
         this.error.name = '名前を入力してください'
+        hasError = true
       } else {
         this.error.name = ''
       }
       if (input.content.trim().length >= MAXCONTENTLENGTH) {
         this.error.content = `${MAXCONTENTLENGTH}文字以内で入力してください`
+        hasError = true
       } else {
         this.error.content = ''
       }
-      const hasError = Object.keys(this.error).some((key) => this.error[key] !== '')
       return hasError
     },
     confirm() {
