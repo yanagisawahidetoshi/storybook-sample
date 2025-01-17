@@ -1,14 +1,7 @@
 import FormInput from './FormInput.vue'
 import { fn } from '@storybook/test'
 
-const nameValidation = {
-  required: '名前を入力してください',
-  duplication: '重複しています'
-}
 const MAXCONTENTLENGTH = 10
-const contentValidation = {
-  lengthOver: `${MAXCONTENTLENGTH}文字以内で入力してください`
-}
 
 export default {
   title: 'Example/Input',
@@ -64,8 +57,8 @@ export const ServerValidation = {
       content: 'ああああああああああああああああああああああああああああああ'
     },
     errorMsg: {
-      name: nameValidation.duplication,
-      content: contentValidation.lengthOver
+      name: '重複しています',
+      content: `${MAXCONTENTLENGTH}文字以内で入力してください`
     }
   }
 }

@@ -10,13 +10,7 @@
   </div>
 </template>
 <script>
-const nameValidation = {
-  required: '名前を入力してください'
-}
 const MAXCONTENTLENGTH = 10
-const contentValidation = {
-  lengthOver: `${MAXCONTENTLENGTH}文字以内で入力してください`
-}
 
 export default {
   name: 'FormInput',
@@ -43,20 +37,20 @@ export default {
   methods: {
     validation(input) {
       if (!input.name.trim()) {
-        this.error.name = nameValidation.required
+        this.error.name = '名前を入力してください'
       } else {
         this.error.name = ''
       }
       if (input.content.trim().length >= MAXCONTENTLENGTH) {
-        this.error.content = contentValidation.lengthOver
+        this.error.content = `${MAXCONTENTLENGTH}文字以内で入力してください`
       } else {
         this.error.content = ''
       }
+      const hasError = Object.keys(this.error).some((key) => this.error[key] !== '')
+      return hasError
     },
     confirm() {
-      this.validation(this.input)
-      const hasError = Object.keys(this.error).some((key) => this.error[key] !== '')
-      if (hasError) return
+      if (this.validation(this.input)) return
       this.$emit('onConfirm', this.input)
     }
   },
