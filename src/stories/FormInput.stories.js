@@ -1,6 +1,15 @@
 import FormInput from './FormInput.vue'
 import { fn } from '@storybook/test'
 
+const nameValidation = {
+  required: '名前を入力してください',
+  duplication: '重複しています'
+}
+const MAXCONTENTLENGTH = 10
+const contentValidation = {
+  lengthOver: `${MAXCONTENTLENGTH}文字以内で入力してください`
+}
+
 export default {
   title: 'Example/Input',
   component: FormInput,
@@ -15,18 +24,16 @@ export default {
       }
     },
     template:
-      '<FormInput :inputValue="inputValue" :errorMsg="errorMsg" @onInput="handleInput" @onConfirm="handleConfirm" @onValidation="handleValidation"/>'
+      '<FormInput :defaultValue="defaultValue" :errorMsg="errorMsg" @onConfirm="handleConfirm"/>'
   }),
   args: {
-    handleInput: fn(),
-    handleConfirm: fn(),
-    handleValidation: fn()
+    handleConfirm: fn()
   }
 }
 
 export const Input = {
   args: {
-    inputValue: {
+    defaultValue: {
       name: '',
       content: ''
     },
@@ -39,7 +46,7 @@ export const Input = {
 
 export const BackFromConfirm = {
   args: {
-    inputValue: {
+    defaultValue: {
       name: '塚原',
       content: 'たのしいな'
     },
@@ -50,28 +57,15 @@ export const BackFromConfirm = {
   }
 }
 
-export const Validation = {
-  args: {
-    inputValue: {
-      name: '',
-      content: ''
-    },
-    errorMsg: {
-      name: '名前を入力してください',
-      content: ''
-    }
-  }
-}
-
 export const ServerValidation = {
   args: {
-    inputValue: {
+    defaultValue: {
       name: '塚原',
-      content: 'あああああ'
+      content: 'ああああああああああああああああああああああああああああああ'
     },
     errorMsg: {
-      name: 'すでに登録済みです',
-      content: ''
+      name: nameValidation.duplication,
+      content: contentValidation.lengthOver
     }
   }
 }
