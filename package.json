@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
+    "@storybook/addon-actions": "^8.4.7",
     "@storybook/addon-essentials": "^8.3.2",
     "@storybook/addon-interactions": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
