@@ -32,8 +32,7 @@
 
 <script>
 export default {
-  name: 'my-form',
-  emits: ['submit'],
+  name: 'InputForm',
   props: {
     defaultName: {
       type: String,
@@ -80,7 +79,8 @@ export default {
       this.$emit('submit', {
         name: this.name,
         mail: this.mail,
-        content: this.content
+        content: this.content,
+        formStep: 'confirm'
       })
     }
   }
