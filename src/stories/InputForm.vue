@@ -34,17 +34,21 @@
 export default {
   name: 'InputForm',
   props: {
-    defaultName: {
-      type: String,
-      default: ''
-    },
-    defaultMail: {
-      type: String,
-      default: ''
-    },
-    defaultContent: {
-      type: String,
-      default: ''
+    defaultFormData: {
+      type: Object,
+      default: () => ({}),
+      name: {
+        type: String,
+        default: ''
+      },
+      mail: {
+        type: String,
+        default: ''
+      },
+      content: {
+        type: String,
+        default: ''
+      }
     },
     defaultErrors: {
       type: Object,
@@ -53,9 +57,9 @@ export default {
   },
   data() {
     return {
-      name: this.defaultName ? this.defaultName : '',
-      mail: this.defaultMail ? this.defaultMail : '',
-      content: this.defaultContent ? this.defaultContent : '',
+      name: this.defaultFormData.name ? this.defaultFormData.name : '',
+      mail: this.defaultFormData.mail ? this.defaultFormData.mail : '',
+      content: this.defaultFormData.content ? this.defaultFormData.content : '',
       errors: this.defaultErrors ? this.defaultErrors : {}
     }
   },
@@ -79,8 +83,7 @@ export default {
       this.$emit('submit', {
         name: this.name,
         mail: this.mail,
-        content: this.content,
-        formStep: 'confirm'
+        content: this.content
       })
     }
   }

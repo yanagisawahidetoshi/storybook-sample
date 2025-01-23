@@ -3,24 +3,24 @@
     <dl>
       <dt>名前（必須）</dt>
       <dd>
-        <p>{{ name }}</p>
+        <p>{{ formData.name }}</p>
       </dd>
     </dl>
     <dl>
       <dt>メールアドレス（必須）</dt>
       <dd>
-        <p>{{ mail }}</p>
+        <p>{{ formData.mail }}</p>
       </dd>
     </dl>
     <dl>
       <dt>内容</dt>
       <dd>
-        <p>{{ content }}</p>
+        <p>{{ formData.content }}</p>
       </dd>
     </dl>
     <div>
-      <button @click="onBack">戻る</button>
-      <button @click="onSubmit">送信</button>
+      <button @click="$emit('back')">戻る</button>
+      <button @click="$emit('submit')">送信</button>
     </div>
   </form>
 </template>
@@ -29,34 +29,19 @@
 export default {
   name: 'ConfirmForm',
   props: {
-    name: {
-      type: String,
-      default: ''
-    },
-    mail: {
-      type: String,
-      default: ''
-    },
-    content: {
-      type: String,
-      default: ''
-    }
-  },
-  methods: {
-    onBack(event) {
-      event.preventDefault()
-      this.$emit('back', {
-        name: this.name,
-        mail: this.mail,
-        content: this.content,
-        formStep: 'input'
-      })
-    },
-    onSubmit(event) {
-      event.preventDefault()
-      this.$emit('submit', {
-        formStep: 'send'
-      })
+    formData: {
+      name: {
+        type: String,
+        default: ''
+      },
+      mail: {
+        type: String,
+        default: ''
+      },
+      content: {
+        type: String,
+        default: ''
+      }
     }
   }
 }

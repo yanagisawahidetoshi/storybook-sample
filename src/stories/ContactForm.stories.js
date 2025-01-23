@@ -8,4 +8,4 @@ export default {
   }
 }
 
-export const ContactForm = {}
+export const Default = {}

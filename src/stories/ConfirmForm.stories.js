@@ -8,15 +8,16 @@ export default {
     layout: 'fullscreen'
   },
   args: {
-    onBack: fn(),
     onSubmit: fn()
   }
 }
 
-export const ConfirmForm = {
+export const Default = {
   args: {
-    name: 'ヤマダ太郎',
-    mail: 'yamada@yanagisawa.com',
-    content: 'お問い合わせです。'
+    formData: {
+      name: 'ヤマダ太郎',
+      mail: 'yamada@yanagisawa.com',
+      content: 'お問い合わせです。'
+    }
   }
 }

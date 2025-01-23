@@ -2,17 +2,15 @@
   <div>
     <InputForm
       v-if="formStep === 'input'"
-      @submit="updateFormData"
-      :defaultName="name"
-      :defaultMail="mail"
-      :defaultContent="content"
+      @submit="handleInputSubmit"
+      :defaultFormData="formData"
+      :defaultErrors="errors"
     />
     <ConfirmForm
       v-if="formStep === 'confirm'"
-      @back="updateFormData"
-      :name="name"
-      :mail="mail"
-      :content="content"
+      @back="handleConfirmBack"
+      @submit="handleConfirmSubmit"
+      :formData="formData"
     />
   </div>
 </template>
@@ -26,19 +24,27 @@ export default {
   components: { InputForm, ConfirmForm },
   data() {
     return {
-      name: '',
-      mail: '',
-      content: '',
-      errors: [],
-      formStep: 'input'
+      formData: {
+        name: '',
+        mail: '',
+        content: ''
+      },
+      formStep: 'input',
+      errors: []
     }
   },
   methods: {
-    updateFormData(v) {
-      this.name = v.name
-      this.mail = v.mail
-      this.content = v.content
-      this.formStep = v.formStep
+    handleInputSubmit(v) {
+      this.formData.name = v.name
+      this.formData.mail = v.mail
+      this.formData.content = v.content
+      this.formStep = 'confirm'
+    },
+    handleConfirmBack() {
+      this.formStep = 'input'
+    },
+    handleConfirmSubmit() {
+      this.formStep = 'complete'
     }
   }
 }
