@@ -36,19 +36,7 @@ export default {
   props: {
     defaultFormData: {
       type: Object,
-      default: () => ({}),
-      name: {
-        type: String,
-        default: ''
-      },
-      mail: {
-        type: String,
-        default: ''
-      },
-      content: {
-        type: String,
-        default: ''
-      }
+      default: () => ({})
     },
     defaultErrors: {
       type: Object,
@@ -57,10 +45,10 @@ export default {
   },
   data() {
     return {
-      name: this.defaultFormData.name ? this.defaultFormData.name : '',
-      mail: this.defaultFormData.mail ? this.defaultFormData.mail : '',
-      content: this.defaultFormData.content ? this.defaultFormData.content : '',
-      errors: this.defaultErrors ? this.defaultErrors : {}
+      name: this.defaultFormData.name,
+      mail: this.defaultFormData.mail,
+      content: this.defaultFormData.content,
+      errors: this.defaultErrors
     }
   },
   methods: {

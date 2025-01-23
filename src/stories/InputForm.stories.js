@@ -35,9 +35,9 @@ export const InputFormBackEndError = {
 export const InputFormBack = {
   args: {
     defaultFormData: {
-      defaultName: 'ヤマダ太郎',
-      defaultMail: 'yamada@yamada.com',
-      defaultContent: 'テスト入力です'
+      name: 'ヤマダ太郎',
+      mail: 'yamada@yamada.com',
+      content: 'テスト入力です'
     }
   }
 }

@@ -35,9 +35,7 @@ export default {
   },
   methods: {
     handleInputSubmit(v) {
-      this.formData.name = v.name
-      this.formData.mail = v.mail
-      this.formData.content = v.content
+      this.formData = { ...v }
       this.formStep = 'confirm'
     },
     handleConfirmBack() {
