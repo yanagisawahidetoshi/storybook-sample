@@ -15,7 +15,7 @@ export default {
       }
     },
     template:
-      '<FormConfirm :inputValue="defaultValue" @onBackToInput="handleBack" @onSend="handleSend"/>'
+      '<FormConfirm :inputValue="defaultValue" @onGoBack="handleBack" @onSubmit="handleSend"/>'
   }),
   args: {
     handleBack: fn(),
@@ -23,7 +23,7 @@ export default {
   }
 }
 
-export const Confirm = {
+export const Default = {
   args: {
     defaultValue: {
       name: '山田',

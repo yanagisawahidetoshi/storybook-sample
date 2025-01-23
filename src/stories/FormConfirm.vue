@@ -10,8 +10,8 @@
         <td>{{ inputValue.content }}</td>
       </tr>
     </table>
-    <button type="button" @click="$emit('onBackToInput')">戻る</button>
-    <button type="button" @click="$emit('onSend', inputValue)">送信</button>
+    <button type="button" @click="$emit('onGoBack')">戻る</button>
+    <button type="button" @click="$emit('onSubmit', inputValue)">送信</button>
   </div>
 </template>
 <script>
