@@ -12,7 +12,7 @@ export default {
   }
 }
 
-export const InputForm = {}
+export const Default = {}
 
 export const InputFormFrontEndError = {
   args: {
@@ -34,8 +34,10 @@ export const InputFormBackEndError = {
 
 export const InputFormBack = {
   args: {
-    defaultName: 'ヤマダ太郎',
-    defaultMail: 'yamada@yamada.com',
-    defaultContent: 'テスト入力です'
+    defaultFormData: {
+      name: 'ヤマダ太郎',
+      mail: 'yamada@yamada.com',
+      content: 'テスト入力です'
+    }
   }
 }

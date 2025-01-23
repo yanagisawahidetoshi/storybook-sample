@@ -32,20 +32,11 @@
 
 <script>
 export default {
-  name: 'my-form',
-  emits: ['submit'],
+  name: 'InputForm',
   props: {
-    defaultName: {
-      type: String,
-      default: ''
-    },
-    defaultMail: {
-      type: String,
-      default: ''
-    },
-    defaultContent: {
-      type: String,
-      default: ''
+    defaultFormData: {
+      type: Object,
+      default: () => ({})
     },
     defaultErrors: {
       type: Object,
@@ -54,10 +45,10 @@ export default {
   },
   data() {
     return {
-      name: this.defaultName ? this.defaultName : '',
-      mail: this.defaultMail ? this.defaultMail : '',
-      content: this.defaultContent ? this.defaultContent : '',
-      errors: this.defaultErrors ? this.defaultErrors : {}
+      name: this.defaultFormData.name,
+      mail: this.defaultFormData.mail,
+      content: this.defaultFormData.content,
+      errors: this.defaultErrors
     }
   },
   methods: {
