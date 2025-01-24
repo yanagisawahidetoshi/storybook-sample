@@ -3,13 +3,13 @@
     <FormInput
       :defaultValue="inputValue"
       :errorMsg="errorMsg"
-      @onConfirm="(value) => confirm(value)"
+      @onConfirm="(value) => handleConfirm(value)"
       v-if="currentStep === 'input'"
     />
     <FormConfirm
       :inputValue="inputValue"
-      @onGoBack="onGoBack"
-      @onSubmit="onSubmit"
+      @onGoBack="handleBack"
+      @onSubmit="handleSubmit"
       v-if="currentStep === 'confirm'"
     />
     <FormComplete :inputValue="inputValue" v-if="currentStep === 'complete'" />
@@ -41,14 +41,14 @@ export default {
     }
   },
   methods: {
-    confirm(newValue) {
+    handleConfirm(newValue) {
       this.inputValue = newValue
       this.currentStep = 'confirm'
     },
-    onGoBack() {
+    handleBack() {
       this.currentStep = 'input'
     },
-    onSubmit() {
+    handleSubmit() {
       this.currentStep = 'complete'
     }
   }
