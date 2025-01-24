@@ -12,7 +12,7 @@
       @onSubmit="handleSubmit"
       v-if="currentStep === 'confirm'"
     />
-    <FormComplete :inputValue="inputValue" v-if="currentStep === 'complete'" />
+    <FormComplete v-if="currentStep === 'complete'" />
   </div>
 </template>
 <script>
