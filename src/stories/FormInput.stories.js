@@ -37,7 +37,7 @@ export const Input = {
   }
 }
 
-export const BackFromConfirm = {
+export const FormHasInputValue = {
   args: {
     defaultValue: {
       name: '塚原',
