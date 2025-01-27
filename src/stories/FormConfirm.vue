@@ -1,7 +1,8 @@
 <template>
   <div>
     <table>
-      <tr>
+      <tbody>
+        <tr>
         <th>名前</th>
         <td>{{ inputValue.name }}</td>
       </tr>
@@ -9,6 +10,7 @@
         <th>問い合わせ内容</th>
         <td>{{ inputValue.content }}</td>
       </tr>
+      </tbody>
     </table>
     <button type="button" @click="$emit('onGoBack')">戻る</button>
     <button type="button" @click="$emit('onSubmit', inputValue)">送信</button>
