@@ -29,12 +29,26 @@ const Template = (args) => ({
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default = Template.bind({})
 Default.args = {
-	name: '山田 太郎',
-	email: 'yamada.taro@example.com',
-	tTel: '0330001234',
-	data: '2000-01-01',
-	zipCode: '1000013',
-	prefecture: '東京都',
-	comment: 'あいうえお'
+	formData: {
+		name: '',
+		email: '',
+		tel: '',
+		date: '',
+		zipCode: '',
+		prefecture: '',
+		comment: ''
+	}
 }
 
+export const WithDefaultValue = Template.bind({})
+WithDefaultValue.args = {
+	formData: {
+		name: '山田 太郎',
+		email: 'yamada.taro@example.com',
+		tel: '0330001234',
+		date: '2000-01-01',
+		zipCode: '1000013',
+		prefecture: '東京都',
+		comment: 'あいうえお'
+	}
+}

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<span v-if="checkParam === 'noneName'">
+		<span v-if="checkParam === 'errMsg'">
 			エラーメッセージ
 		</span>
 		<p>名前:<input type="text" name="name" v-model="name" /></p>
@@ -17,30 +17,31 @@
 			</select>
 		</p>
 		<p>コメント：<textarea name="comment" v-model="comment"></textarea></p>
+		<button type="button" @click="handleSubmit">確認画面へ</button>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Inputs",
+	name: "InputForm",
 	props: {
-		defaultName: { type: String, default: "" },
-		defaultEmail: { type: String, default: ""},
-		defaultTel: { type: String, default: ""},
-		defaultData: { type: String, default: ""},
-		defaultZipCode: { type: String, default: ""},
-		defaultPrefecture: { type: String, default: ""},
-		defaultComment: {type: String, default: ""},
-		checkParam: { type: String, default: ""},
+		defaultFormData: {	Object,default: () => ({}) },
+		defaultCheckParam: { type: String },
+	},
+	computed: {
+		checkParam() {
+			return this.defaultCheckParam;
+		}
 	},
 	data() {
 		return {
-			name: this.defaultName,
-			email: this.defaultEmail,
-			tel: this.defaultTel,
-			date: this.defaultData,
-			zipCode: this.defaultZipCode,
-			prefecture: this.defaultPrefecture,
+			name: this.defaultFormData.name,
+			email: this.defaultFormData.email,
+			tel: this.defaultFormData.tel,
+			date: this.defaultFormData.date,
+			zipCode: this.defaultFormData.zipCode,
+			prefecture: this.defaultFormData.prefecture,
+			comment: this.defaultFormData.comment,
 			prefectures: [
 				"北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県",
 				"福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県",
@@ -51,8 +52,21 @@ export default {
 				"香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県",
 				"熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"
 			],
-			comment: this.defaultComment,
 		};
+	},
+	methods: {
+		handleSubmit() {
+			const formData = {
+				name: this.name,
+				email: this.email,
+				tel: this.tel,
+				date: this.date,
+				zipCode: this.zipCode,
+				prefecture: this.prefecture,
+				comment: this.comment,
+			}
+			this.$emit("onSubmit", formData);
+		},
 	}
 };
 </script>
