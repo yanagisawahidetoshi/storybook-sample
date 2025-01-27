@@ -6,7 +6,7 @@ export default {
   component: EntryForm,
   tags: ['autodocs'],
   args: { 
-    onEntryData: action('entryData')
+    onSubmitEntryForm: action('entryData')
   },
 }
 
@@ -23,7 +23,7 @@ export const ServerErrors = {
   args: {
     serverErrors: {
       serverError: 'サーバーエラー',
-      nameError:'重複しています'
+      name:'重複しています'
     }
   }
 }
