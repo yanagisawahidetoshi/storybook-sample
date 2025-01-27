@@ -15,7 +15,7 @@ export const DefaultFormData = {
   args: {
     defaultFormData: {
       name: 'テスト名前',
-      mail: 'テストメール'
+      mail: 'test@test.com'
     }
   }
 }
