@@ -1,14 +1,13 @@
 <template>
 	<div>
 		<h1>入力</h1>
-		<p v-if="serverErrors">{{ serverErrors.serverError }}</p>
+		<p v-if="errors.serverError">{{ errors.serverError }}</p>
         <table>
 			<tbody>
 				<tr>
 					<th>名前</th>
 					<td><input type="text" v-model="entryData.name">
 						<p v-if="errors.name">{{ errors.name }}</p>
-						<p v-if="serverErrors.nameError">{{ serverErrors.nameError }}</p>
 					</td>
 				</tr>
 				<tr>
@@ -30,7 +29,7 @@ export default {
 		},
 		serverErrors: {
 			type:Object,
-			default: () => ({nameError:""}),
+			default: () => ({}),
 		},
 	},
 	data() {
@@ -39,13 +38,13 @@ export default {
 				name: this.defaultFormData.name,
 				mail: this.defaultFormData.mail,
 			},
-			errors: {}
+			errors: this.serverErrors
 		}
 	},
 	methods: {
 		onSubmit() {
 			if(!this.validate()) {
-				this.$emit("entryData", this.entryData);
+				this.$emit("submitEntryForm", this.entryData);
 			}
 		},
 		validate() {

@@ -2,7 +2,7 @@
 	<div>
 		<EntryForm
 			v-if="currentPage === 'entry'"
-			@entryData="handleEntryData"
+			@submitEntryForm="handleSubmitEntryForm"
 			:defaultFormData="formData"
 		/>
 		<ConfirmForm
@@ -36,7 +36,7 @@ export default {
 		};
 	},
 	methods: {
-		handleEntryData(entryData) {
+		handleSubmitEntryForm(entryData) {
 			this.formData = entryData;
 			this.currentPage = 'confirm';
 		},
