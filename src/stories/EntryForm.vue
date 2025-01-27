@@ -7,8 +7,8 @@
 				<tr>
 					<th>名前</th>
 					<td><input type="text" v-model="entryData.name">
-						<p v-if="errors.required">必須項目です</p>
-						<p v-if="serverErrors.nameError">名前が重複しています</p>
+						<p v-if="errors.name">{{ errors.name }}</p>
+						<p v-if="serverErrors.nameError">{{ serverErrors.nameError }}</p>
 					</td>
 				</tr>
 				<tr>
@@ -30,8 +30,8 @@ export default {
 		},
 		serverErrors: {
 			type:Object,
-			default: () => ({}),
-		}
+			default: () => ({nameError:""}),
+		},
 	},
 	data() {
 		return {
@@ -39,24 +39,24 @@ export default {
 				name: this.defaultFormData.name,
 				mail: this.defaultFormData.mail,
 			},
-			errors: {
-				required: false,
-			},
+			errors: {}
 		}
 	},
 	methods: {
 		onSubmit() {
-			this.validate();
-			if(!this.errors.required) {
+			if(!this.validate()) {
 				this.$emit("entryData", this.entryData);
 			}
 		},
 		validate() {
+			this.errors = {};
+			let isError = false;
+
 			if(!this.entryData.name) {
-				this.errors.required = true
-				return
+				this.errors.name = "名前は必須です";
+				isError = true;
 			}
-			this.errors.required = false
+			return isError;
 		}
 	}
 }

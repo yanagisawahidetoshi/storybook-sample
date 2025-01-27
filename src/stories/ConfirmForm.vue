@@ -14,7 +14,7 @@
 			</tbody>
 		</table>
 		<div><button @click="onSubmit">送信</button></div>
-		<div><button @click="onBack">戻る</button></div>
+		<div><button @click="$emit('onBack')">戻る</button></div>
 	</div>
 </template>
 
@@ -30,9 +30,6 @@ export default {
 	methods: {
 		onSubmit() {
 			this.$emit('submit', this.formData);
-		},
-		onBack() {
-			this.$emit('confirmData', this.formData);
 		},
 	},
 };

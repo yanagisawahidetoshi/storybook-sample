@@ -8,7 +8,7 @@
 		<ConfirmForm
 			v-if="currentPage === 'confirm'"
 			:formData="formData"
-			@confirmData="handleBackToEntry"
+			@onBack="handleBackToEntry"
 			@submit="handleSubmit"
 		/>
 		<CompleteForm v-if="currentPage === 'complete'" />
@@ -40,8 +40,7 @@ export default {
 			this.formData = entryData;
 			this.currentPage = 'confirm';
 		},
-		handleBackToEntry(confirmData) {
-			this.formData = confirmData;
+		handleBackToEntry() {
 			this.currentPage = 'entry';
 		},
 		handleSubmit() {

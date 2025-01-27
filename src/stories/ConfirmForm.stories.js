@@ -6,17 +6,14 @@ export default {
   component: ConfirmForm,
   tags: ['autodocs'],
   args: { 
-    onConfirmData: action('confirmData'),
     onSubmit: action('submit')
   },
 }
-
-export const Default = {}
-export const FormData = {
+export const Default = {
   args: {
     formData: {
       name: 'テスト名前',
-      mail: 'テストメール'
+      mail: 'test@test.com'
     }
   }
 }
