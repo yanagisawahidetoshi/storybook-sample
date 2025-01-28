@@ -2,7 +2,7 @@
 	<div>
 		<p>名前:{{ formData.name }}</p>
 		<p>メールアドレス:{{ formData.email }}</p>
-		<p>電話番号：{{ formData.tel }}</p>
+		<p>電話番号：{{ formData.phone }}</p>
 		<p>年月日：{{ formData.date }}</p>
 		<p>郵便番号：{{ formData.zipCode }}</p>
 		<p>都道府県：{{ formData.prefecture }}</p>
