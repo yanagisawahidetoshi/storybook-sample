@@ -2,7 +2,7 @@
 	<div>
 		<h1>入力</h1>
 		<p v-if="errors.serverError">{{ errors.serverError }}</p>
-        <table>
+		<table>
 			<tbody>
 				<tr>
 					<th>名前</th>
@@ -38,7 +38,7 @@ export default {
 				name: this.defaultFormData.name,
 				mail: this.defaultFormData.mail,
 			},
-			errors: this.serverErrors
+			errors: {...this.serverErrors}
 		}
 	},
 	methods: {
