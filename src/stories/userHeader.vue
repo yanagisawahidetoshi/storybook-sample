@@ -1,15 +1,5 @@
 <template>
-  <header
-    :class="
-      user.permission === 'admin'
-        ? 'red'
-        : user.permission === 'staff'
-          ? 'blue'
-          : user.permission === 'guest'
-            ? 'yellow'
-            : ''
-    "
-  >
+  <header :class="'is-' + user.permission">
     <dl>
       <dt>ユーザー名： {{ user.name }}</dt>
       <dd>権限： {{ user.permission }}</dd>
@@ -30,13 +20,13 @@ export default {
 </script>
 
 <style scoped>
-.red {
+.is-admin {
   background-color: red;
 }
-.blue {
+.is-staff {
   background-color: blue;
 }
-.guest {
+.is-guest {
   background-color: yellow;
 }
 </style>

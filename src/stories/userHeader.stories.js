@@ -8,12 +8,6 @@ export default {
   }
 }
 
-export const PreLogin = {
-  args: {
-    user: {}
-  }
-}
-
 export const Admin = {
   args: {
     user: {
