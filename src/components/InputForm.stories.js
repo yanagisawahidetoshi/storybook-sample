@@ -42,29 +42,5 @@ WithDefaultValue.args = {
 		zipCode: '1000013',
 		prefecture: '東京都',
 		comment: 'あいうえお'
-	},
-	defaultRequiredLabel: {
-		name: true,
-		email: true,
-	},
+	}
 }
-
-export const WithRyphen = Template.bind({})
-WithRyphen.args = {
-	defaultFormData: {
-		name: '',
-		email: '',
-		phone: '',
-		date: '',
-		zipCode: '',
-		prefecture: '',
-		comment:''
-	},
-	defaultRequiredLabel: {
-		name: true,
-		email: true,
-	},
-	phoneFomatRyphen: true,
-	zipCodeFomatRyphen: true,
-}
-
