@@ -1,7 +1,7 @@
 <template>
 	<div>
 
-		<div v-if="checkParam">{{ checkParam }}</div>
+		<div v-if="errorMessage">{{ errorMessage }}</div>
 
 		<p>
 			<label for="name">名前:<span class="required">(必須)</span>
@@ -70,66 +70,59 @@ export default {
 				'香川県','愛媛県','高知県','福岡県','佐賀県','長崎県',
 				'熊本県','大分県','宮崎県','鹿児島県','沖縄県'
 			],
-			checkParam: '',
+			errorMessage: '',
 		}
 	},
 	methods: {
 		handleSubmit() {
 			this.handleFormCheck();
-			if(!this.checkParam) {
+			if(!this.errorMessage) {
 				this.$emit('onSubmit', this.formData)
 			}
-			return;
 		},
 		handleFormCheck() {
 			// 名前
-			if (!this.formData.name || this.formData.name.trim() === '') {
-				this.checkParam = '名前は必須項目です。忘れずに入力してください。'
+			if ( this.formData.name.trim() === '') {
+				this.errorMessage = '名前は必須項目です。忘れずに入力してください。'
 				return;
 			}
-			if (this.formData.name) {
-				if (/\d/.test(this.formData.name)) {
-					this.checkParam = '[10101] 名前に数字は入力できません。入力内容をご確認ください。'
-					return;
-				}
+			if (/\d/.test(this.formData.name)) {
+				this.errorMessage = '[10101] 名前に数字は入力できません。入力内容をご確認ください。'
+				return;
 			}
 			// メールアドレス
-			if (!this.formData.email || this.formData.email.trim() === '') {
-				this.checkParam = 'メールアドレスは必須項目です。忘れずに入力してください。'
+			if ( this.formData.email.trim() === '') {
+				this.errorMessage = 'メールアドレスは必須項目です。忘れずに入力してください。'
 				return;
 			}
-			if (this.formData.email) {
-				const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-				if (!emailRegex.test(this.formData.email)) {
-					this.checkParam = '[10201] メールアドレスの書式に誤りがあります。メールアドレスを正しく入力しなおしてください。'
-					return;
-				}
+			const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+			if (!emailRegex.test(this.formData.email)) {
+				this.errorMessage = '[10201] メールアドレスの書式に誤りがあります。メールアドレスを正しく入力しなおしてください。'
+				return;
 			}
 			// 電話番号
-			if (!this.formData.phone || this.formData.phone.trim() === '') {
-				this.checkParam = '電話番号は必須項目です。忘れずに入力してください。'
+			if ( this.formData.phone.trim() === '') {
+				this.errorMessage = '電話番号は必須項目です。忘れずに入力してください。'
 				return;
 			}
-			if (this.formData.phone) {
-				let phoneRegex = /^(?:0\d{1,4}-\d{1,4}-\d{4}|\d{10,11})$/;
-				if (!phoneRegex.test(this.formData.phone)) {
-					this.checkParam = '[10301] 電話番号の形式に誤りがあります。入力内容をご確認ください。'
-					return;
-				}
+			const phoneRegex = /^(?:0\d{1,4}-\d{1,4}-\d{4}|\d{10,11})$/;
+			if (!phoneRegex.test(this.formData.phone)) {
+				this.errorMessage = '[10301] 電話番号の形式に誤りがあります。入力内容をご確認ください。'
+				return;
 			}
 			// 年月日
 			if (this.formData.date) {
 				console.log(this.formData.date)
 				const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 				if (!dateRegex.test(this.formData.date)) {
-					this.checkParam = '[10401] 年月日の形式に誤りがあります。内容をご確認ください。'
+					this.errorMessage = '[10401] 年月日の形式に誤りがあります。内容をご確認ください。'
 					return;
 				}
 			}
 			// 郵便番号
 			let zipCodeRegex = /^[0-9]{3}-?[0-9]{4}|[0-9]{7}$/;
 			if (!zipCodeRegex.test(this.formData.zipCode)) {
-				this.checkParam = '[10501] 郵便番号の形式に誤りがあります。入力内容をご確認ください。'
+				this.errorMessage = '[10501] 郵便番号の形式に誤りがあります。入力内容をご確認ください。'
 				return;
 			}
 		}
