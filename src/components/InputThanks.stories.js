@@ -1,5 +1,5 @@
 import { fn } from '@storybook/test'
-import Thanks from './Thanks.vue'
+import Thanks from './InputThanks.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {

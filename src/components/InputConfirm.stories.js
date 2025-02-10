@@ -1,5 +1,5 @@
 import { fn } from '@storybook/test'
-import Confirm from './Confirm.vue'
+import Confirm from './InputConfirm.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -24,6 +24,7 @@ const Template = (args) => ({
 export const Default = Template.bind({})
 Default.args = {
     name: '山田 太郎',
-    eMail: 'yamada.taro@example.com',
+    email: 'yamada.taro@example.com',
+    tel: '08012341234',
 }
 
