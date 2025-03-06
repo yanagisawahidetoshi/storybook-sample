@@ -1,9 +1,9 @@
-import TableBody from './index.vue'
+import TradeApplicationListTbody from './index.vue'
 import { fn } from '@storybook/test'
 
 export default {
-  title: 'TradeApplicationList/TableBody',
-  component: TableBody,
+  title: 'TradeApplicationList/Tbody',
+  component: TradeApplicationListTbody,
   parameters: {
     layout: 'fullscreen'
   },
@@ -12,12 +12,12 @@ export default {
   }
 }
 
-export const DefaultTableBody = {
+export const DefaultTradeApplicationListTbody = {
   args: {
     tradeApply: {
       date: '2025/1/1',
-      retailerCode: 1110111,
       retailerDetail: {
+        retailerCode: 1110111,
         industry: '小売業',
         companyName: 'MiChi合同会社',
         address: '静岡県沼津市',

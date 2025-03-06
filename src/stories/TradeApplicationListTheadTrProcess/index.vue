@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'TableHeadCellProcess',
+  name: 'TradeApplicationListTheadTrProcess',
   data() {
     return {
       radioSelected: null
