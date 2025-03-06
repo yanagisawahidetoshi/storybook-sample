@@ -1,86 +1,56 @@
 <template>
   <div>
-    <table v-if="tradeApplyItems.length">
-      <thead>
-        <tr>
-          <th>申請日</th>
-          <th>会員番号</th>
-          <th>会員情報</th>
-          <th>ショップコンセプト</th>
-          <th>ネットショップ</th>
-          <th>店舗画像</th>
-          <th>申請回数</th>
-          <th>
-            未処理<input
-              type="radio"
-              name="head-radio"
-              value="0"
-              @change="(value) => handleChange(value)"
-            />
-          </th>
-          <th>
-            取引する<input
-              type="radio"
-              name="head-radio"
-              value="1"
-              @change="(value) => handleChange(value)"
-            />
-          </th>
-          <th>
-            取引しない<input
-              type="radio"
-              name="head-radio"
-              value="2"
-              @change="(value) => handleChange(value)"
-            />
-          </th>
-        </tr>
-      </thead>
+    <table v-if="tradeApplies.length">
+      <tradeTableHead @onChange="changeCondition" />
       <tbody>
-        <TableRow
+        <tradeTableRow
           :tradeApply="tradeApply"
-          v-for="tradeApply in tradeApplyItems"
+          v-for="tradeApply in tradeApplies"
           :key="tradeApply.id"
+          :tradeConditions="tradeConditions"
           @onChange="changeTradeApplyItems"
         />
       </tbody>
     </table>
-    <p v-if="!tradeApplyItems.length">処理対象がありませんでした。</p>
+    <p v-if="!tradeApplies.length">処理対象がありませんでした。</p>
   </div>
 </template>
 <script>
-import TableRow from '../TableRow/index.vue'
+import tradeTableRow from '../tradeTableRow/index.vue'
+import tradeTableHead from '../tradeTableHead/index.vue'
 
 export default {
   name: 'TradeTable',
   props: {
-    tradeApplys: {
+    // tradeAppliesはmountedでつかっているだけなので、コピーしてよく使う方をtradeApplyItems→tradeAppliesとかにすればいい
+    defaultTradeApplys: {
       type: Array
     }
   },
   components: {
-    TableRow
+    tradeTableRow,
+    tradeTableHead
   },
   data() {
     return {
-      tradeApplyItems: []
+      // idとconditionだけをもつ配列をつくる
+      tradeApplies: JSON.parse(JSON.stringify(this.defaultTradeApplys)),
+      tradeConditions: []
     }
   },
   methods: {
-    handleChange(e) {
-      const v = parseInt(e.target.value, 10)
-      this.tradeApplyItems = this.tradeApplyItems.map((item) => {
+    changeCondition(v) {
+      this.tradeConditions = this.tradeConditions.map((item) => {
         return { ...item, condition: v }
       })
     },
-    changeTradeApplyItems(v, id) {
-      this.tradeApplyItems = this.tradeApplyItems.map((item) => {
-        return item.id === id ? { ...item, condition: v } : { ...item }
-      })
+    changeTradeApplyItems(updatedConditions) {
+      this.tradeConditions = JSON.parse(JSON.stringify(updatedConditions))
     }
   },
   mounted() {
-    this.tradeApplyItems = JSON.parse(JSON.stringify(this.tradeApplys))
+    this.tradeConditions = this.defaultTradeApplys.map(({ id, condition }) => ({ id, condition }))
+    // idとconditionだけをもつ配列をつくる tradeApplyItemsのconditionは古いままでいい
   }
 }
 </script>

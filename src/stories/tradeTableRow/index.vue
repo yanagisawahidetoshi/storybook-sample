@@ -2,7 +2,7 @@
   <tr>
     <td>{{ tradeApply.applyDate }}</td>
     <td>{{ tradeApply.retailerCode }}</td>
-    <td><TableRetailerCel :retailerInfo="tradeApply.retailerInfo" /></td>
+    <td><tradeTableRetailerInfoCeil :retailerInfo="tradeApply.retailerInfo" /></td>
     <td>{{ tradeApply.concept }}</td>
     <td>{{ tradeApply.netShop }}</td>
     <td>{{ tradeApply.image }}</td>
@@ -11,7 +11,7 @@
       <input
         type="radio"
         :name="`trade-${tradeApply.id}`"
-        :checked="tradeApply.condition === 0"
+        :checked="isCheck(tradeApply.id, 0)"
         value="0"
         @change="($event) => handleChange($event, tradeApply.id)"
       />
@@ -20,7 +20,7 @@
       <input
         type="radio"
         :name="`trade-${tradeApply.id}`"
-        :checked="tradeApply.condition === 1"
+        :checked="isCheck(tradeApply.id, 1)"
         value="1"
         @change="($event) => handleChange($event, tradeApply.id)"
       />
@@ -29,7 +29,7 @@
       <input
         type="radio"
         :name="`trade-${tradeApply.id}`"
-        :checked="tradeApply.condition === 2"
+        :checked="isCheck(tradeApply.id, 2)"
         value="2"
         @change="($event) => handleChange($event, tradeApply.id)"
       />
@@ -37,22 +37,40 @@
   </tr>
 </template>
 <script>
-import TableRetailerCel from './TableRetailerCel/index.vue'
+import tradeTableRetailerInfoCeil from '../tradeTableRetailerInfoCeil/index.vue'
+// tradeTableRowのほうがいい。tradeTableRetailerInfoCeilのディレクトリ構造がおかしいから、上にフォルダおく。atomic designはディレクトリは並列にする
 
 export default {
-  name: 'DateRow',
+  name: 'tradeTableRow',
+  data() {
+    return {}
+  },
   props: {
     tradeApply: {
+      type: Object
+    },
+    tradeConditions: {
       type: Object
     }
   },
   components: {
-    TableRetailerCel
+    tradeTableRetailerInfoCeil
+  },
+  computed: {
+    tradeCondition() {
+      return JSON.parse(JSON.stringify(this.tradeConditions))
+    }
   },
   methods: {
     handleChange(e, id) {
       const value = parseInt(e.target.value, 10)
-      this.$emit('onChange', value, id)
+      this.tradeCondition = this.tradeCondition.map((item) =>
+        item.id === id ? { ...item, condition: value } : item
+      )
+      this.$emit('onChange', this.tradeCondition)
+    },
+    isCheck(tradeApplyId, number) {
+      return this.tradeCondition.filter((el) => el.id === tradeApplyId)[0].condition === number
     }
   }
 }

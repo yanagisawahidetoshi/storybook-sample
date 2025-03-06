@@ -4,7 +4,7 @@ export default {
   title: 'Components/TradeTable',
   component: TradeTable,
   argTypes: {
-    tradeApplys: { control: 'Array' }
+    defaultTradeApplys: { control: 'Array' }
   }
 }
 
@@ -18,7 +18,7 @@ const Template = (args) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  tradeApplys: [
+  defaultTradeApplys: [
     {
       id: 1,
       applyDate: '2024/1/1',
@@ -56,5 +56,5 @@ Default.args = {
 
 export const NoTradeApply = Template.bind({})
 NoTradeApply.args = {
-  tradeApplys: []
+  defaultTradeApplys: []
 }
