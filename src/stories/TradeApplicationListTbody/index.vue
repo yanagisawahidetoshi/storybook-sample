@@ -44,13 +44,7 @@ export default {
   name: 'TradeApplicationListTbody',
   props: {
     tradeApply: {},
-    applyStatuses: []
-  },
-  computed: {
-    applyStatus() {
-      const status = this.applyStatuses.find((applyStatus) => applyStatus.id === this.tradeApply.id)
-      return status.applyStatus
-    }
+    applyStatus: String
   }
 }
 </script>

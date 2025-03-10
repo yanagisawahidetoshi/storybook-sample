@@ -1,12 +1,14 @@
 <template>
   <table>
-    <TradeApplicationListTheadTr @radioSelected="changeAllTradeApply" />
+    <TradeApplicationListTheadTr @radioSelected="changeAllTradeApplies" />
     <TradeApplicationListTbody
       :tradeApply="tradeApply"
       v-for="tradeApply in tradeApplies"
       :key="tradeApply.id"
       @selectedApply="changeTradeApply"
-      :applyStatuses="applyStatuses"
+      :applyStatus="
+        applyStatuses.find((applyStatus) => applyStatus.id === tradeApply.id)?.applyStatus
+      "
     />
   </table>
 </template>
@@ -24,23 +26,22 @@ export default {
     return {
       selectAllOfThisCategory: null,
       tradeApplies: this.tradeApplyList,
-      applyStatuses: this.tradeApplyList.map((tradeApply) => {
+      applyStatuses: this.tradeApplyList.map((applyStatuse) => {
         return {
-          id: tradeApply.id,
-          applyStatus: tradeApply.applyStatus
+          id: applyStatuse.id,
+          applyStatus: applyStatuse.applyStatus
         }
       })
     }
   },
   methods: {
-    changeAllTradeApply(v) {
-      this.applyStatuses = this.tradeApplyList.map((tradeApply) => {
+    changeAllTradeApplies(v) {
+      this.applyStatuses = this.tradeApplyList.map((applyStatuse) => {
         return {
-          ...tradeApply,
+          ...applyStatuse,
           applyStatus: v
         }
       })
-      console.log(this.applyStatuses)
     },
     changeTradeApply(selectedApply, id) {
       this.applyStatuses = this.applyStatuses.map((tradeApply) =>
