@@ -1,14 +1,14 @@
 <template>
   <div>
     <table v-if="tradeApplies.length">
-      <tradeTableHead @onChange="changeCondition" />
+      <tradeTableHead @onChange="updateAllConditions" />
       <tbody>
         <tradeTableRow
           :tradeApply="tradeApply"
           v-for="tradeApply in tradeApplies"
           :key="tradeApply.id"
-          :tradeConditions="tradeConditions"
-          @onChange="changeTradeApplyItems"
+          :tradeCondition="tradeConditionById(tradeApply.id)"
+          @onChange="changeTradeCondition"
         />
       </tbody>
     </table>
@@ -38,14 +38,20 @@ export default {
       tradeConditions: []
     }
   },
+  computed: {},
   methods: {
-    changeCondition(v) {
+    tradeConditionById(id) {
+      return this.tradeConditions.filter((item) => item.id === id)
+    },
+    updateAllConditions(v) {
       this.tradeConditions = this.tradeConditions.map((item) => {
         return { ...item, condition: v }
       })
     },
-    changeTradeApplyItems(updatedConditions) {
-      this.tradeConditions = JSON.parse(JSON.stringify(updatedConditions))
+    changeTradeCondition(v, id) {
+      this.tradeConditions = this.tradeConditions.map((item) =>
+        item.id === id ? { ...item, condition: v } : item
+      )
     }
   },
   mounted() {

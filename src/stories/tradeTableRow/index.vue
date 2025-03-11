@@ -11,27 +11,27 @@
       <input
         type="radio"
         :name="`trade-${tradeApply.id}`"
-        :checked="isCheck(tradeApply.id, 0)"
-        value="0"
+        value="unprocessed"
         @change="($event) => handleChange($event, tradeApply.id)"
+        :checked="isCheck('unprocessed')"
       />
     </td>
     <td>
       <input
         type="radio"
         :name="`trade-${tradeApply.id}`"
-        :checked="isCheck(tradeApply.id, 1)"
-        value="1"
+        value="trade"
         @change="($event) => handleChange($event, tradeApply.id)"
+        :checked="isCheck('trade')"
       />
     </td>
     <td>
       <input
         type="radio"
         :name="`trade-${tradeApply.id}`"
-        :checked="isCheck(tradeApply.id, 2)"
-        value="2"
+        value="no_trade"
         @change="($event) => handleChange($event, tradeApply.id)"
+        :checked="isCheck('no_trade')"
       />
     </td>
   </tr>
@@ -49,28 +49,19 @@ export default {
     tradeApply: {
       type: Object
     },
-    tradeConditions: {
+    tradeCondition: {
       type: Object
     }
   },
   components: {
     tradeTableRetailerInfoCeil
   },
-  computed: {
-    tradeCondition() {
-      return JSON.parse(JSON.stringify(this.tradeConditions))
-    }
-  },
   methods: {
     handleChange(e, id) {
-      const value = parseInt(e.target.value, 10)
-      this.tradeCondition = this.tradeCondition.map((item) =>
-        item.id === id ? { ...item, condition: value } : item
-      )
-      this.$emit('onChange', this.tradeCondition)
+      this.$emit('onChange', e.target.value, id)
     },
-    isCheck(tradeApplyId, number) {
-      return this.tradeCondition.filter((el) => el.id === tradeApplyId)[0].condition === number
+    isCheck(status) {
+      return this.tradeCondition[0].condition === status
     }
   }
 }

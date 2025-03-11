@@ -1,9 +1,9 @@
-import tradeTableRow from './index.vue'
+import TradeTableRow from './index.vue'
 import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Components/tradeTableRow',
-  component: tradeTableRow,
+  component: TradeTableRow,
   argTypes: {
     tradeApply: { control: 'object' },
     onclick: { action: 'schedule-clicked' }
@@ -11,11 +11,11 @@ export default {
 }
 
 const Template = (args) => ({
-  components: { tradeTableRow },
+  components: { TradeTableRow },
   setup() {
     return { args }
   },
-  template: '<tradeTableRow v-bind="args" />'
+  template: '<TradeTableRow v-bind="args" />'
 })
 
 export const Default = Template.bind({})

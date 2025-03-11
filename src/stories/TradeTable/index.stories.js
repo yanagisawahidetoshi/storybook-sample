@@ -33,7 +33,7 @@ Default.args = {
       netShop: '',
       image: '',
       times: 3,
-      condition: 0
+      condition: 'unprocessed'
     },
     {
       id: 2,
@@ -49,7 +49,7 @@ Default.args = {
       netShop: '',
       image: '',
       times: 3,
-      condition: 1
+      condition: 'no_trade'
     }
   ]
 }

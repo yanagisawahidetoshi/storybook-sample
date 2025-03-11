@@ -11,24 +11,24 @@
       <th>
         未処理<input
           type="radio"
-          name="head-radio"
-          value="0"
+          name="select-all-conditions"
+          value="unprocessed"
           @change="(e) => handleChange(e.target.value)"
         />
       </th>
       <th>
         取引する<input
           type="radio"
-          name="head-radio"
-          value="1"
+          name="select-all-conditions"
+          value="trade"
           @change="(e) => handleChange(e.target.value)"
         />
       </th>
       <th>
         取引しない<input
           type="radio"
-          name="head-radio"
-          value="2"
+          name="select-all-conditions"
+          value="no_trade"
           @change="(e) => handleChange(e.target.value)"
         />
       </th>
@@ -40,8 +40,8 @@ export default {
   name: 'tradeTableHead',
   methods: {
     handleChange(v) {
-      const value = parseInt(v, 10)
-      this.$emit('onChange', value)
+      // const value = parseInt(v, 10)
+      this.$emit('onChange', v)
     }
   }
 }
