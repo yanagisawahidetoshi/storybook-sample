@@ -2,7 +2,7 @@
   <tr>
     <td>{{ tradeApply.applyDate }}</td>
     <td>{{ tradeApply.retailerCode }}</td>
-    <td><tradeTableRetailerInfoCeil :retailerInfo="tradeApply.retailerInfo" /></td>
+    <td><TradeTableRetailerInfoCeil :retailerInfo="tradeApply.retailerInfo" /></td>
     <td>{{ tradeApply.concept }}</td>
     <td>{{ tradeApply.netShop }}</td>
     <td>{{ tradeApply.image }}</td>
@@ -37,11 +37,11 @@
   </tr>
 </template>
 <script>
-import tradeTableRetailerInfoCeil from '../tradeTableRetailerInfoCeil/index.vue'
-// tradeTableRowのほうがいい。tradeTableRetailerInfoCeilのディレクトリ構造がおかしいから、上にフォルダおく。atomic designはディレクトリは並列にする
+import TradeTableRetailerInfoCeil from '../tradeTableRetailerInfoCeil/index.vue'
+// TradeTableRowのほうがいい。tradeTableRetailerInfoCeilのディレクトリ構造がおかしいから、上にフォルダおく。atomic designはディレクトリは並列にする
 
 export default {
-  name: 'tradeTableRow',
+  name: 'TradeTableRow',
   data() {
     return {}
   },
@@ -50,18 +50,18 @@ export default {
       type: Object
     },
     tradeCondition: {
-      type: Object
+      type: String
     }
   },
   components: {
-    tradeTableRetailerInfoCeil
+    TradeTableRetailerInfoCeil
   },
   methods: {
     handleChange(e, id) {
       this.$emit('onChange', e.target.value, id)
     },
     isCheck(status) {
-      return this.tradeCondition[0].condition === status
+      return this.tradeCondition === status
     }
   }
 }
