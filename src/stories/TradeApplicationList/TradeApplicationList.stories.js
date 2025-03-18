@@ -1,9 +1,9 @@
-import TradeApplicationListTable from './index.vue'
+import TradeApplicationList from './index.vue'
 import { fn } from '@storybook/test'
 
 export default {
-  title: 'TradeApplicationList/TradeApplicationListTable',
-  component: TradeApplicationListTable,
+  title: 'TradeApplicationList/TradeApplicationList',
+  component: TradeApplicationList,
   parameters: {
     layout: 'fullscreen'
   },
@@ -12,7 +12,7 @@ export default {
   }
 }
 
-export const DefaultTradeApplicationListTable = {
+export const DefaultTradeApplicationList = {
   args: {
     tradeApplyList: [
       {

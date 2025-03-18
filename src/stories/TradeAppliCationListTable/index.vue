@@ -1,9 +1,9 @@
 <template>
   <table>
-    <TradeApplicationListTheadTr @radioSelected="changeAllTradeApplies" />
+    <TradeApplicationListTheadTr @radioSelected="changeAllTradeApplyList" />
     <TradeApplicationListTbody
       :tradeApply="tradeApply"
-      v-for="tradeApply in tradeApplies"
+      v-for="tradeApply in tradeApplyList"
       :key="tradeApply.id"
       @selectedApply="changeTradeApply"
       :applyStatus="
@@ -11,21 +11,32 @@
       "
     />
   </table>
+  <button
+    @click="
+      $emit(
+        'onClick',
+        applyStatuses.filter((applyStatus) => applyStatus.applyStatus === '取引する')
+      )
+    "
+  >
+    次へ
+  </button>
 </template>
 
 <script>
 import TradeApplicationListTbody from '../TradeApplicationListTbody/index.vue'
 import TradeApplicationListTheadTr from '../TradeApplicationListTheadTr/index.vue'
 export default {
-  name: 'TradeAppliCationListTable',
+  name: 'TradeApplicationListTable',
+  emits: ['onClick'],
   components: { TradeApplicationListTheadTr, TradeApplicationListTbody },
   props: {
-    tradeApplyList: []
+    tradeApplyList: {
+      type: Array
+    }
   },
   data() {
     return {
-      selectAllOfThisCategory: null,
-      tradeApplies: this.tradeApplyList,
       applyStatuses: this.tradeApplyList.map((applyStatuse) => {
         return {
           id: applyStatuse.id,
@@ -35,7 +46,7 @@ export default {
     }
   },
   methods: {
-    changeAllTradeApplies(v) {
+    changeAllTradeApplyList(v) {
       this.applyStatuses = this.tradeApplyList.map((applyStatuse) => {
         return {
           ...applyStatuse,

@@ -1,17 +1,14 @@
 <template>
   <th>
-    未処理
-    <br />
+    <span class="item-name">未処理</span>
     <input type="radio" value="未処理" v-model="radioSelected" @change="onSelect" />
   </th>
   <th>
-    取引する
-    <br />
+    <span class="item-name">取引する</span>
     <input type="radio" value="取引する" v-model="radioSelected" @change="onSelect" />
   </th>
   <th>
-    取引しない
-    <br />
+    <span class="item-name">取引しない</span>
     <input type="radio" value="取引しない" v-model="radioSelected" @change="onSelect" />
   </th>
 </template>
@@ -19,6 +16,7 @@
 <script>
 export default {
   name: 'TradeApplicationListTheadTrProcess',
+  emits: ['radioSelected'],
   data() {
     return {
       radioSelected: null
@@ -31,3 +29,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.item-name {
+  display: block;
+}
+</style>

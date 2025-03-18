@@ -1,9 +1,9 @@
-import TradeApplicationListTable from './index.vue'
+import TradeApplicationListMessageInputTable from './index.vue'
 import { fn } from '@storybook/test'
 
 export default {
-  title: 'TradeApplicationList/TradeApplicationListTable',
-  component: TradeApplicationListTable,
+  title: 'TradeApplicationList/TradeApplicationListMessageInputTable',
+  component: TradeApplicationListMessageInputTable,
   parameters: {
     layout: 'fullscreen'
   },
@@ -12,7 +12,7 @@ export default {
   }
 }
 
-export const DefaultTradeApplicationListTable = {
+export const DefaultTradeApplicationListMessageInputTable = {
   args: {
     tradeApplyList: [
       {
@@ -46,6 +46,12 @@ export const DefaultTradeApplicationListTable = {
         image: 'http://imageimage.com',
         applicationCount: '5回',
         applyStatus: '取引しない'
+      }
+    ],
+    applyStatuses: [
+      {
+        id: '123',
+        applyStatus: '取引する'
       }
     ]
   }
