@@ -2,7 +2,7 @@ import TheadTr from './index.vue'
 import { fn } from '@storybook/test'
 
 export default {
-  title: 'TradeApplicationList/TheadTr',
+  title: 'TradeApplicationList/TradeApplicationListTheadTr',
   component: TheadTr,
   parameters: {
     layout: 'fullscreen'

@@ -2,7 +2,7 @@ import TradeApplicationListTbody from './index.vue'
 import { fn } from '@storybook/test'
 
 export default {
-  title: 'TradeApplicationList/Tbody',
+  title: 'TradeApplicationList/TradeApplicationListTbody',
   component: TradeApplicationListTbody,
   parameters: {
     layout: 'fullscreen'
