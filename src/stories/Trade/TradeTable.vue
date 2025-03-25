@@ -2,36 +2,63 @@
 	<div>
 		<table>
 			<thead>
-				<TradeTableHead @change="handleSelectAll" />
+				<TradeTableHead @onChange="handleAllCheck" />
 			</thead>
 			<tbody>
-				<TradeTableRow
-				:selectedValue="selectedValue" />
+				<TradeTableRow 
+					v-for="tradeData in tradeDataList"
+					:key="tradeData.id"
+					:tradeData="tradeData"
+					@checked="updateTradeCondition"
+					:tradeCondition="tradeConditionById(tradeData.id)"
+					 />
 			</tbody>
 		</table>
+		<button @click="onSubmit">次へ</button>
 	</div>
 </template>
 <script>
 import TradeTableHead from './TradeTableHead.vue';
 import TradeTableRow from './TradeTableRow.vue';
 export default {
-	name:"EntryForm",
+	name:"TradeTable",
 	components: {
 		TradeTableHead,
 		TradeTableRow
 	},
 	props: {
-
+		defaultTradeDataList: {
+			type: Array,
+		}
 	},
 	data() {
 		return {
-			selectedValue: "",
+			tradeDataList: this.defaultTradeDataList,
+			tradeConditionList: this.defaultTradeDataList.map((tradeData) => {
+				return {
+					id: tradeData.id,
+					condition: tradeData.condition
+				}
+			})
 		}
 	},
 	methods: {
-		handleSelectAll(value) {
-			this.selectedValue = value;
+		tradeConditionById(id) {
+			return this.tradeConditionList.find(item => item.id === id)
 		},
-	}
+		handleAllCheck(value) {
+			this.tradeConditionList = this.tradeConditionList.map(item => {
+				return { ...item, condition: value}
+			});
+		},
+		updateTradeCondition(value, id) {
+			this.tradeConditionList = this.tradeConditionList.map(item =>
+				item.id === id ? { ...item, condition: value } : item
+			);
+		},
+		onSubmit() {
+			this.$emit("submit", this.tradeConditionList);
+		},
+	},
 }
 </script>

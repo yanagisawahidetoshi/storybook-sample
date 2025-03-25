@@ -1,19 +1,20 @@
 <template>
 	<tr>
-		<td>内容：申請日</td>
-		<td>内容：会員番号</td>
-		<td><TradeTableRetailerInfo /></td>
-		<td>内容：ショップコンセプト</td>
-		<td>内容：ネットショップ</td>
-		<td>内容：店舗画像</td>
-		<td>内容：申請回数</td>
-		<td><input type="radio" :name="'condition_' + tradeData.id" :checked="selectedValue === 'APPLY'"></td>
-		<td><input type="radio" :name="'condition_' + tradeData.id" :checked="selectedValue === 'TRADING'"></td>
-		<td><input type="radio" :name="'condition_' + tradeData.id" :checked="selectedValue === 'DISAPPROVED'"></td>
+		<td>{{ tradeData.applyDate }}</td>
+		<td>{{ tradeData.retailerCode }}</td>
+		<td><TradeTableRetailerInfo :retailerInfo="tradeData.retailerInfo" /></td>
+		<td>{{ tradeData.concept }}</td>
+		<td>{{ tradeData.netShop }}</td>
+		<td>{{ tradeData.image }}</td>
+		<td>{{ tradeData.count }}</td>
+		<td><input type="radio" :name="`condition_${tradeData.id}`" value="APPLY" :checked="tradeCondition.condition === 'APPLY'" @change="onChange"></td>
+		<td><input type="radio" :name="`condition_${tradeData.id}`" value="TRADING" :checked="tradeCondition.condition === 'TRADING'" @change="onChange"></td>
+		<td><input type="radio" :name="`condition_${tradeData.id}`" value="DISAPPROVED" :checked="tradeCondition.condition === 'DISAPPROVED'" @change="onChange"></td>
 	</tr>
 </template>
 <script>
 import TradeTableRetailerInfo from './TradeTableRetailerInfo.vue';
+
 export default {
 	name: 'TradeTableRow',
 	components: {
@@ -22,14 +23,22 @@ export default {
 	props: {
 		tradeData: {
 			type: Object
-		}
-	},
-	data() {
-		return {
+		},
+		tradeCondition: {
+			type: Object,
 		}
 	},
 	methods: {
-
+		onChange(event) {
+			this.$emit("checked", event.target.value, this.tradeData.id);
+		},
 	}
 }
 </script>
+
+<style scoped>
+td {
+	padding: 15px;
+	border: 1px solid #CCC;
+}
+</style>
